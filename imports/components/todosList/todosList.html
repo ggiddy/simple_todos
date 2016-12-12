@@ -1,17 +1,27 @@
 <header>
   <h1>Todo List</h1>
 
-  <form class="new-task" ng-submit="$ctrl.addTask($ctrl.newTask)">
+  <label class="hide-completed">
+    <input type="checkbox" ng-model="$ctrl.hideCompleted" />
+    Hide completed tasks
+  </label>
+
+  <login-buttons></login-buttons>
+
+  <form class="new-task" ng-submit="$ctrl.addTask($ctrl.newTask)" ng-show="$ctrl.currentUser">
       <input ng-model="$ctrl.newTask" type="text" name="text" placeholder="Type to add new tasks">
   </form>
 </header>
  
 <ul>
-  <li ng-repeat="task in $ctrl.tasks" ng-class="{'checked': task.checked}">
+  <li ng-repeat="task in $ctrl.tasks" ng-class="{'checked': task.checked}"
+    ng-show="$ctrl.currentUser.username == task.username">
     <button class="delete" ng-click="$ctrl.removeTask(task)">&times;</button>
-    <input type="checkbox" ng-checked="task.checked" ng-click="$ctrl.setChecked(task)" class="toggle-checked">
+    <input type="checkbox" ng-checked="task.checked" ng-click="$ctrl.setChecked(task)">
+
     <span class="text">
         {{task.text}}
+        <input type="hidden" ng-model="username" value="$ctrl.currentUser.username">
     </span>
   </li>
 </ul>
