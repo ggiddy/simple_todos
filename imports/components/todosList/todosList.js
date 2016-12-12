@@ -29,6 +29,11 @@ class TodosListCtrl {
       // Clear form
       this.newTask = '';
   }
+
+  removeTask(task) {
+    Tasks.remove(task._id);
+  }
+
 }
  
 export default angular.module('todosList', [
