@@ -7,7 +7,11 @@ import { Tasks } from '../../api/tasks.js';
 class TodosListCtrl {
   constructor($scope) {
     $scope.viewModel(this);
+
+    this.subscribe('tasks')
+
     this.hideCompleted = false;
+
     this.helpers({
         tasks() {
           const selector = {}
@@ -38,7 +42,7 @@ class TodosListCtrl {
             }
           }).count()
         },
-    })
+    });
   }
 
   
